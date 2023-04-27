@@ -1,7 +1,7 @@
 package ro.unibuc.fmi.airlliantquartz.quartz;
 
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +23,7 @@ import static org.quartz.TriggerBuilder.newTrigger;
 
 @Slf4j
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class QuartzService {
 
     private static final JobKey TICKET_JOB_KEY = new JobKey(ProcessTicketNotificationJob.class.getSimpleName(), "airlliant_ticket_jobs");
@@ -31,7 +31,7 @@ public class QuartzService {
     private static final boolean IS_REPLACED = false;
 
     @Value(value = "${spring.jpa.properties.hibernate.jdbc.time_zone}")
-    private final String timeZone;
+    private String timeZone;
     private final Scheduler scheduler;
 
     @PostConstruct
