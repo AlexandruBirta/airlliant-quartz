@@ -1,5 +1,6 @@
 package ro.unibuc.fmi.airlliantquartz.configuration;
 
+
 import com.fasterxml.uuid.Generators;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.UUID;
+
 
 @Slf4j
 @Component

@@ -1,5 +1,6 @@
 package ro.unibuc.fmi.airlliantquartz.configuration;
 
+
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -7,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Getter
 @Setter
@@ -19,9 +21,11 @@ public class UserSecurityConfig {
     @Getter
     @Setter
     static class AuthenticatingUser {
+
         private String name;
         private String pass;
         private String roles;
+
     }
 
 }
