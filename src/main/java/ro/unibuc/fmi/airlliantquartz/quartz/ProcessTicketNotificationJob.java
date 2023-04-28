@@ -51,7 +51,9 @@ public class ProcessTicketNotificationJob extends QuartzJobBean {
             Ticket ticket = ticketRepository.findById(ticketId).orElseThrow(
                     () -> new ApiException(ExceptionStatus.TICKET_NOT_FOUND, String.valueOf(ticketId)));
 
-            notificationService.notifyUser(ticket.getUser());
+            if (Boolean.TRUE.equals(isUserNotifiable(ticket))) {
+                notificationService.notifyUser(ticket.getUser(), ticket.getFlight().getFlightNumber());
+            }
 
             log.info("Executed job '{}' fired from trigger '{}' by scheduler with id '{}'.", jobName, triggerName, schedulerId);
 
@@ -63,6 +65,10 @@ public class ProcessTicketNotificationJob extends QuartzJobBean {
             log.error("Error during ticket job processing.", e);
         }
 
+    }
+
+    private static Boolean isUserNotifiable(Ticket ticket) {
+        return ticket.getUser().getIsNotifiable();
     }
 
 }
